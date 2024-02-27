@@ -1,15 +1,14 @@
-import Card from "../components/Card"
-import { useMealsContext } from "../contexts/MealsContext"
+import Card from '../components/Card'
+import { useMealsContext } from '../contexts/MealsContext'
 
-export default function RecipesContainer () {
+export default function RecipesContainer() {
   const meals = useMealsContext()
 
   return (
     <div>
-      <h1>Recipes</h1>
       <div>
         {meals.map((meal) => (
-          <Card key={meal.idMeal} meal={meal} />
+          <Card key={meal.id} meal={meal} />
         ))}
       </div>
     </div>

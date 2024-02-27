@@ -1,7 +1,6 @@
 import { useContext, createContext } from 'react'
 import { useMeals } from '../hooks/useMeals'
-
-import Meal from '../interfaces'
+import { type Meal } from '../typos'
 
 const MealsContext = createContext<Meal[]>([])
 
@@ -14,10 +13,9 @@ function useMealsContext() {
 }
 
 function MealsProvider({ children }: { children: React.ReactNode }) {
-  const {meals} = useMeals()
+  const { meals } = useMeals()
 
   return <MealsContext.Provider value={meals}> {children} </MealsContext.Provider>
 }
-
 
 export { useMealsContext, MealsProvider }

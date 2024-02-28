@@ -1,4 +1,4 @@
-import { Meal } from '../typos'
+import { type Meal } from '../typos'
 
 interface CardProps {
   meal: Meal
@@ -6,8 +6,8 @@ interface CardProps {
 
 export default function Card({ meal }: CardProps) {
   return (
-    <article className="w-48 bg-slate-100 p-6">
-      <img src={meal.mealThumb} />
+    <article className="bg-orange-100 p-1 border border-orange-200 rounded-md">
+      <img src={meal.mealThumb} className="aspect-square rounded-t-md" />
       <p>{meal.id}</p>
       <p>{meal.name}</p>
       <p>{meal.category}</p>

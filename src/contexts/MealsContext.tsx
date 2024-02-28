@@ -2,7 +2,9 @@ import { useContext, createContext } from 'react'
 import { useMeals } from '../hooks/useMeals'
 import { type Meal } from '../typos'
 
-const MealsContext = createContext<Meal[]>([])
+type MealsContext = Meal[]
+
+const MealsContext = createContext<MealsContext>([])
 
 function useMealsContext() {
   const context = useContext(MealsContext)

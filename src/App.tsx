@@ -1,6 +1,6 @@
 import Layout from './containers/Layout'
 import Header from './components/Header'
-import SearchBar from './components/SearchBar'
+import SearchContainer from './containers/SearchContainer'
 import CardsContainer from './containers/CardsContainer'
 import { MealsProvider } from './contexts/MealsContext'
 
@@ -9,7 +9,7 @@ export default function App() {
     <MealsProvider>
       <Layout>
         <Header />
-        <SearchBar />
+        <SearchContainer />
         <CardsContainer />
       </Layout>
     </MealsProvider>

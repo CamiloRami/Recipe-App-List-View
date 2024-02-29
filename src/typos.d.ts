@@ -6,7 +6,7 @@ export interface Meal {
   mealThumb: string
 }
 
-interface APIMeal {
+export interface APIMeal {
   idMeal: string
   strMeal: string
   strDrinkAlternate: string | null
@@ -63,5 +63,10 @@ interface APIMeal {
 }
 
 export interface MealsAPIResponse {
-  meals: APIMeal[]
+  meals: APIMeal[] | null
+}
+
+export interface MealsState {
+  meals: Meal[]
+  loading: boolean
 }

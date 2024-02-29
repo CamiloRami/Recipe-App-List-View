@@ -37,8 +37,12 @@ function useMeals() {
 
   useEffect(() => {
     const fetchInitialMeals = async () => {
-      const meals = await getRandomMeals(9)
-      dispatch({ type: 'set_random_meals', payload: { meals, loading: false } })
+      try {
+        const meals = await getRandomMeals(9)
+        dispatch({ type: 'set_random_meals', payload: { meals, loading: false } })
+      } catch (error) {
+        console.error('Error fetching meals', error)
+      }
     }
 
     fetchInitialMeals()
@@ -46,9 +50,18 @@ function useMeals() {
 
   const clearMeals = () => dispatch({ type: 'clear_meals' })
 
+  // const searchMeals = async (query: string) => {
+  //   const meals = await searchMealsByName(query)
+  //   dispatch({ type: 'search_meals', payload: { meals, loading: false } })
+  // }
+
   const searchMeals = async (query: string) => {
-    const meals = await searchMealsByName(query)
-    dispatch({ type: 'set_random_meals', payload: { meals, loading: false } })
+    try {
+      const meals = await searchMealsByName(query)
+      dispatch({ type: 'search_meals', payload: { meals, loading: false } })
+    } catch (error) {
+      console.error('Error fetching meals', error)
+    }
   }
 
   return {mealsState, clearMeals, searchMeals}

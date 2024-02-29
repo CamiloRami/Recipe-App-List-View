@@ -27,12 +27,22 @@ const mapFromApiToMeal = (mealFromApi: APIMeal): Meal => {
 async function getRandomMeals(quantity: number) {
   return Promise.all(
     Array.from({ length: quantity }, async () => {
-      return getRandomMeal().then((meals) => {
+      return getRandomMeal().then(meals => {
         if (!meals) throw new Error('No meals found')
         return mapFromApiToMeal(meals?.[0])
       })
     }),
   )
+}
+
+async function getMealByFirstLetter(letter: string) {
+  return fetch(`${BASE_URL}/search.php?f=${letter}`)
+    .then(response => response.json() as Promise<MealsAPIResponse>)
+    .then(data => data.meals?.map(mapFromApiToMeal) ?? [])
+    .catch((error: Error) => {
+      console.error('Error fetching meal', error.message)
+      throw error
+    })
 }
 
 async function getMealById(id: number) {
@@ -56,7 +66,7 @@ async function searchMealsByName(query: string) {
     })
 }
 
-type MealCategoriesResponse = { meals: {strCategory: string}[] }
+type MealCategoriesResponse = { meals: { strCategory: string }[] }
 
 async function getMealCategories() {
   return fetch(`${BASE_URL}/list.php?c=list`)
@@ -68,7 +78,7 @@ async function getMealCategories() {
     })
 }
 
-type MealAreasResponse = { meals: {strArea: string}[] }
+type MealAreasResponse = { meals: { strArea: string }[] }
 
 async function getMealAreas() {
   return fetch(`${BASE_URL}/list.php?a=list`)
@@ -80,6 +90,33 @@ async function getMealAreas() {
     })
 }
 
+async function searchMealsByCategory(category: string) {
+  return fetch(`${BASE_URL}/filter.php?c=${category}`)
+    .then(response => response.json() as Promise<MealsAPIResponse>)
+    .then(data => data.meals?.map(mapFromApiToMeal) ?? [])
+    .catch((error: Error) => {
+      console.error('Error fetching meal', error.message)
+      throw error
+    })
+}
 
+async function searchMealsByArea(area: string) {
+  return fetch(`${BASE_URL}/filter.php?a=${area}`)
+    .then(response => response.json() as Promise<MealsAPIResponse>)
+    .then(data => data.meals?.map(mapFromApiToMeal) ?? [])
+    .catch((error: Error) => {
+      console.error('Error fetching meal', error.message)
+      throw error
+    })
+}
 
-export { getRandomMeals, getMealById, searchMealsByName, getMealCategories, getMealAreas }
+export {
+  getRandomMeals,
+  getMealByFirstLetter,
+  getMealById,
+  searchMealsByName,
+  getMealCategories,
+  getMealAreas,
+  searchMealsByCategory,
+  searchMealsByArea,
+}

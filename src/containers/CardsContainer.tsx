@@ -6,8 +6,6 @@ export default function CardsContainer() {
     mealsState: { meals },
   } = useMealsContext()
 
-  console.log(meals)
-
   return (
     <>
       <div>

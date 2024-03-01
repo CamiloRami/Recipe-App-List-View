@@ -13,7 +13,7 @@ export default function CardsContainer() {
           {(meals.length === 0 && !loading) ? 'No meals found' : null}
         </h2>
       </div>
-      <section className="grid grid-cols-3 gap-1 p-2">
+      <section className="grid grid-cols-2 gap-1 p-2 sm:grid-cols-3">
         {!(meals.length === 0) &&
           meals.map(meal => <Card key={meal.id} meal={meal} />)}
       </section>

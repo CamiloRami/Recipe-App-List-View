@@ -9,7 +9,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gray-800 p-4 text-center text-white">
+    <footer className="bg-gray-800 p-4 text-center text-white w-full max-w-3xl mt-auto">
       <p>Browse By Name</p>
       <div className="flex justify-center space-x-2">
         {ABC.map(letter => (

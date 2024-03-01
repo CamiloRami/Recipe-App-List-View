@@ -3,14 +3,14 @@ import { useMealsContext } from '../contexts/MealsContext'
 
 export default function CardsContainer() {
   const {
-    mealsState: { meals },
+    mealsState: { meals, loading },
   } = useMealsContext()
 
   return (
     <>
       <div>
         <h2 className="p-4 text-center text-3xl">
-          {meals.length === 0 ? 'No meals found' : 'Meals'}
+          {(meals.length === 0 && !loading) ? 'No meals found' : null}
         </h2>
       </div>
       <section className="grid grid-cols-3 gap-1 p-2">

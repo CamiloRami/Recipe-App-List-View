@@ -7,16 +7,16 @@ import {
 } from '../services/meals'
 import type { MealsState, SearchState } from '../types'
 
-type MealAction =
-  | {
+type MealAction = {
       type: 'set_random_meals'
       payload: MealsState
-    }
-  | {
+    } | {
       type: 'search_meals'
       payload: MealsState
-    }
-  | {
+    } | {
+      type: 'load_meals'
+      payload: MealsState['loading']
+    } | {
       type: 'clear_meals'
     }
 
@@ -27,6 +27,9 @@ function mealsReducer(state: MealsState, action: MealAction) {
 
     case 'search_meals':
       return action.payload
+
+    case 'load_meals':
+      return { ...state, loading: action.payload }
 
     case 'clear_meals':
       return { ...state, meals: [] }
@@ -63,6 +66,7 @@ function useMeals() {
 
   const searchMeals = async (searchInputs: SearchState) => {
     try {
+      dispatch({ type: 'load_meals', payload: true })
       const mealsFromApi = await searchMealsByName(searchInputs.inputValue)
       const meals: MealsState['meals'] = []
 

@@ -1,4 +1,5 @@
 import { useReducer } from 'react'
+import { type SearchState } from '../types'
 
 type SearchAction = {
   type: 'change_input_value'
@@ -10,12 +11,6 @@ type SearchAction = {
   type: 'change_input_area'
   payload: SearchState['inputArea']
 
-}
-
-interface SearchState {
-  inputValue: string
-  inputCategory: string
-  inputArea: string
 }
 
 function searchReducer(state: SearchState, action: SearchAction) {
@@ -67,9 +62,9 @@ function useSearch() {
     dispatch({ type: 'change_input_area', payload: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, fn: (query: string) => void) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, fn: (searchState: SearchState) => void) => {
     e.preventDefault()
-    fn(state.inputValue)
+    fn(state)
     console.log(state)
   }
 

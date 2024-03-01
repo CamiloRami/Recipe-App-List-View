@@ -1,4 +1,4 @@
-import type { MealsAPIResponse, Meal, APIMeal } from '../typos'
+import type { MealsAPIResponse, MealFromFilter, Meal, APIMeal } from '../types'
 
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1'
 
@@ -22,6 +22,18 @@ const mapFromApiToMeal = (mealFromApi: APIMeal): Meal => {
   } = mealFromApi
 
   return { id, name, category, area, mealThumb }
+}
+
+const mapFromCategoryApiToMeal = (mealFromApi: MealFromFilter): Meal => {
+  const { idMeal: id, strMeal: name, strMealThumb: mealThumb } = mealFromApi
+
+  return { 
+    id, 
+    name, 
+    category: '', 
+    area: '', 
+    mealThumb
+   }
 }
 
 async function getRandomMeals(quantity: number) {
@@ -93,7 +105,7 @@ async function getMealAreas() {
 async function searchMealsByCategory(category: string) {
   return fetch(`${BASE_URL}/filter.php?c=${category}`)
     .then(response => response.json() as Promise<MealsAPIResponse>)
-    .then(data => data.meals?.map(mapFromApiToMeal) ?? [])
+    .then(data => data.meals?.map(mapFromCategoryApiToMeal) ?? [])
     .catch((error: Error) => {
       console.error('Error fetching meal', error.message)
       throw error

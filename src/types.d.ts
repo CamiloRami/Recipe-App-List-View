@@ -62,6 +62,16 @@ export interface APIMeal {
   dateModified: string | null
 }
 
+export interface MealFromFilter {
+  strMeal: string
+  strMealThumb: string
+  idMeal: string
+}
+
+export interface MealsFromFilter {
+  meals: MealFromFilter[] | null
+}
+
 export interface MealsAPIResponse {
   meals: APIMeal[] | null
 }
@@ -69,4 +79,10 @@ export interface MealsAPIResponse {
 export interface MealsState {
   meals: Meal[]
   loading: boolean
+}
+
+export interface SearchState {
+  inputValue: string
+  inputCategory: string
+  inputArea: string
 }

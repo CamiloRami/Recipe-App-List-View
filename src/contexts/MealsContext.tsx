@@ -1,6 +1,6 @@
 import { useContext, createContext } from 'react'
 import { useMeals } from '../hooks/useMeals'
-import { type MealsState } from '../typos'
+import { type MealsState } from '../types'
 
 interface MealsContext {
   mealsState: MealsState

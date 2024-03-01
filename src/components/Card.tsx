@@ -1,4 +1,4 @@
-import { type Meal } from '../typos'
+import { type Meal } from '../types'
 
 interface CardProps {
   meal: Meal

@@ -1,9 +1,9 @@
 import { useEffect, useReducer } from 'react'
 import {
-  getRandomMeals,
   searchMealsByName,
   searchMealsByArea,
   searchMealsByCategory,
+  getMealByFirstLetter,
 } from '../services/meals'
 import type { MealsState, SearchState } from '../types'
 
@@ -46,21 +46,23 @@ const INITIAL_STATE: MealsState = {
 function useMeals() {
   const [mealsState, dispatch] = useReducer(mealsReducer, INITIAL_STATE)
 
-  useEffect(() => {
-    const fetchInitialMeals = async () => {
-      try {
-        const meals = await getRandomMeals(9)
-        dispatch({
-          type: 'set_random_meals',
-          payload: { meals, loading: false },
-        })
-      } catch (error) {
-        console.error('Error fetching meals', error)
-      }
+  const fetchMealsByFirstLetter = async (letter: string) => {
+    try {
+      dispatch({ type: 'load_meals', payload: true })
+      const meals = await getMealByFirstLetter(letter)
+      dispatch({ type: 'set_random_meals', payload: { meals, loading: false } })
+    } catch (error) {
+      console.error('Error fetching meals', error)
     }
+  }
+
+  useEffect(() => {
+    const fetchInitialMeals = async () => fetchMealsByFirstLetter('a')
 
     fetchInitialMeals()
   }, [])
+
+
 
   const clearMeals = () => dispatch({ type: 'clear_meals' })
 

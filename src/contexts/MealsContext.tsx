@@ -6,6 +6,7 @@ interface MealsContext {
   mealsState: MealsState
   clearMeals: () => void
   searchMeals: (searchState: SearchState) => void
+  searchMealsByFirstLetter: (letter: string) => void
 }
 
 const MealsContext = createContext<MealsContext>({} as MealsContext)
@@ -19,9 +20,9 @@ function useMealsContext() {
 }
 
 function MealsProvider({ children }: { children: React.ReactNode }) {
-  const { mealsState, clearMeals, searchMeals } = useMeals()
+  const { mealsState, clearMeals, searchMeals, searchMealsByFirstLetter } = useMeals()
 
-  return <MealsContext.Provider value={{mealsState, clearMeals, searchMeals}}> {children} </MealsContext.Provider>
+  return <MealsContext.Provider value={{mealsState, clearMeals, searchMeals, searchMealsByFirstLetter}}> {children} </MealsContext.Provider>
 }
 
 export { useMealsContext, MealsProvider }

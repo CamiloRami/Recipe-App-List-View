@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Search from './components/Search'
 import LoadingContainer from './containers/LoadingContainer'
 import CardsContainer from './containers/CardsContainer'
+import Footer from './components/Footer'
 import { MealsProvider } from './contexts/MealsContext'
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
         <Header />
         <Search />
         <CardsContainer />
+        <Footer />
       </Layout>
     </MealsProvider>
   )

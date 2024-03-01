@@ -113,7 +113,12 @@ function useMeals() {
     }
   }
 
-  return { mealsState, clearMeals, searchMeals }
+  return {
+    mealsState,
+    clearMeals,
+    searchMeals,
+    searchMealsByFirstLetter: fetchMealsByFirstLetter,
+  }
 }
 
 export { useMeals }

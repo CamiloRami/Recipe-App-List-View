@@ -61,11 +61,6 @@ function useMeals() {
 
   const clearMeals = () => dispatch({ type: 'clear_meals' })
 
-  // const searchMeals = async (query: string) => {
-  //   const meals = await searchMealsByName(query)
-  //   dispatch({ type: 'search_meals', payload: { meals, loading: false } })
-  // }
-
   const searchMeals = async (searchInputs: SearchState) => {
     try {
       const mealsFromApi = await searchMealsByName(searchInputs.inputValue)

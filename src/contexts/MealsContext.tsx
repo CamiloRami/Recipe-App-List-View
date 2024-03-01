@@ -1,11 +1,11 @@
 import { useContext, createContext } from 'react'
 import { useMeals } from '../hooks/useMeals'
-import { type MealsState } from '../types'
+import type { MealsState, SearchState } from '../types'
 
 interface MealsContext {
   mealsState: MealsState
   clearMeals: () => void
-  searchMeals: (query: string) => void
+  searchMeals: (searchState: SearchState) => void
 }
 
 const MealsContext = createContext<MealsContext>({} as MealsContext)

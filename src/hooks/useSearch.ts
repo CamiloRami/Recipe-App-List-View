@@ -65,7 +65,6 @@ function useSearch() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, fn: (searchState: SearchState) => void) => {
     e.preventDefault()
     fn(state)
-    console.log(state)
   }
 
   return { state, handleChangeValue, handleChangeCategory, handleChangeArea, handleSubmit }

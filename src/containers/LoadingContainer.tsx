@@ -7,7 +7,7 @@ export default function LoadingContainer() {
   } = useMealsContext()
   
   return loading ? (
-    <div className="absolute top-0 z-50 flex h-screen w-full items-center justify-center bg-black bg-opacity-10">
+    <div className="absolute top-0 left-0 z-50 flex h-screen w-full items-center justify-center bg-black bg-opacity-10">
       <Loading />
     </div>
   ) : null
